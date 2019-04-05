@@ -86,12 +86,11 @@ export default {
         this.position.left = "2em";
       }
       if (pos.left > 200) {
-        this.position.left = "-18em";
+        this.position.left = "-18vw";
         this.position.top = "2em";
-        this.position.width = `calc(35em - ${pos.left}px)`;
       }
       if (pos.left > 500) {
-        this.position.left = "-35em";
+        this.position.left = "-50vw";
       }
     },
     onHover(type) {
@@ -146,8 +145,7 @@ export default {
   transition: opacity 0.25s linear;
   z-index: 99999999;
   pointer-events: none;
-  min-width: 35em;
-  /* max-width: 50vw; */
+  width: 45vw;
   max-height: 35vh;
 }
 .quick-view .hover-content,
