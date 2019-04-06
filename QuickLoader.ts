@@ -17,7 +17,6 @@ class QuickLoader {
     Vue.component('quick-view', QuickView)
     Vue.component('avatar', Avatar)
     Vue.component('navbar', Navbar)
-    
   }
 }
 
