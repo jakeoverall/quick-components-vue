@@ -2,7 +2,7 @@
   <nav class="navbar navbar-light bg-dark d-flex align-items-center justify-content-between">
     <!-- LEFT -->
     <div class="navbar-brand d-flex align-items-center no-select">
-      <img class="nav-logo" src="../../assets/cw-nav-logo.png" height="45" width="45">
+      <img class="nav-logo" src="./assets/cw-nav-logo.png" height="45" width="45">
       <div class="d-flex flex-column text-white site-title">
         <h6 class="m-0 title">
           <span class="ml-1">CodeWorks</span>
