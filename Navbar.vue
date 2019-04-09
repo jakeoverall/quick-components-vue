@@ -4,7 +4,7 @@
     <div class="navbar-brand d-flex align-items-center no-select">
       <img class="nav-logo" src="./assets/cw-nav-logo.png" height="45" width="45">
       <div class="d-flex flex-column text-white site-title">
-        <h6 class="m-0 title">
+        <h6 class="p-0 m-0 title">
           <span class="ml-1">CodeWorks</span>
         </h6>
         <h6 class="m-0 ml-1">
