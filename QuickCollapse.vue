@@ -4,6 +4,7 @@
       <div
         @click="show = !show"
         class="d-flex align-items-center flex-grow action muted"
+        :class="titleClass"
         :style="titleStyle"
       >
         <i
@@ -38,6 +39,7 @@ export default {
         return { open: "fa-plus-square", close: "fa-minus-square" };
       }
     },
+    titleClass: String,
     titleStyle: {
       type: Object,
       default() {
