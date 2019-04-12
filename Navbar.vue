@@ -1,17 +1,19 @@
 <template>
   <nav class="navbar navbar-light bg-dark d-flex align-items-center justify-content-between">
     <!-- LEFT -->
-    <div class="navbar-brand d-flex align-items-center no-select">
-      <img class="nav-logo" src="./assets/cw-nav-logo.png" height="45" width="45">
-      <div class="d-flex flex-column text-white site-title">
-        <h6 class="p-0 m-0 title">
-          <span class="ml-1">CodeWorks</span>
-        </h6>
-        <h6 class="m-0 ml-1">
-          <span>Academy</span>
-        </h6>
+    <a href="/">
+      <div class="navbar-brand d-flex align-items-center no-select">
+        <img class="nav-logo" src="./assets/cw-nav-logo.png" height="45" width="45">
+        <div class="d-flex flex-column text-white site-title">
+          <h6 class="p-0 m-0 title">
+            <span class="ml-1">CodeWorks</span>
+          </h6>
+          <h6 class="m-0 ml-1">
+            <span>Academy</span>
+          </h6>
+        </div>
       </div>
-    </div>
+    </a>
 
     <!-- RIGHT -->
     <div class="d-flex align-items-center mr-3 text-light">
@@ -20,9 +22,7 @@
       </div>
       <div class="mr-3">
         <quick-view class="text-dark" title="CodeWorks Academy" icon="fa-th text-white">
-          <div class="card p-3">
-            app list here???
-          </div>
+          <div class="card p-3">app list here???</div>
         </quick-view>
       </div>
       <avatar :user="user" radius="50%" border-style="1px solid var(--primary)" size="55px"/>
@@ -52,14 +52,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.navbar{
+.navbar {
   border-top: 2px solid;
   border-bottom: 3px solid var(--primary);
-  --gradient: linear-gradient(to right, var(--primary), var(--purple), var(--danger));
+  --gradient: linear-gradient(
+    to right,
+    var(--primary),
+    var(--purple),
+    var(--danger)
+  );
 }
 .navbar {
   border-top: 2px solid;
-  box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   .loader-progress {
     height: 2px;
     background-color: var(--primary);
@@ -80,7 +85,6 @@ export default {
   }
   .title {
     border-bottom: 1px solid var(--primary);
-    
   }
 }
 </style>

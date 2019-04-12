@@ -7,7 +7,7 @@
             <div class="d-flex align-items-center justify-content-between">
               <h5 class="m-0">{{title}}:</h5>
               <span v-if="tag" class="tag" :style="{'background-color': color || 'purple'}">
-                <i v-if="tag == 'icon'" class="fa fa-lg fa-fw" :class="icon"></i>
+                <i v-if="tag == 'icon'" class="fa fa-lg fa-fw" :class="icon" :style="{'color': tagColor}"></i>
                 <span v-else>{{tag}}</span>
               </span>
               <div
@@ -34,6 +34,7 @@
       >
         <div v-if="icon">
           <i class="fa fa-fw action muted" :class="icon" :style="{'color': color}"></i>
+          <span v-if="showTitle" class="ml-1" :style="{'color': color}">{{title}}</span>
         </div>
         <div v-else-if="useSlot">
           <slot></slot>
@@ -50,8 +51,10 @@ export default {
   name: "QuickView",
   props: {
     title: { type: String, required: true },
+    showTitle: { type: Boolean, default: false },
     color: { type: String, default: "inherit" },
     tag: String,
+    tagColor: {type: String, default: "var(--light)"},
     icon: String,
     forceClick: { type: Boolean, default: false },
     useSlot: { type: Boolean, default: false }
@@ -109,10 +112,10 @@ export default {
 }
 
 .quick-view .hover-text {
-  font-weight: 600;
-  font-style: italic;
-  text-decoration: underline var(--primary);
-  text-decoration-style: double;
+  /* font-weight: 600;
+  font-style: italic; */
+  /* text-decoration: underline var(--primary);
+  text-decoration-style: double; */
 }
 
 .quick-view.active .hover-text {
