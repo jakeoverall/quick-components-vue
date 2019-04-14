@@ -5,9 +5,14 @@
         <div class="card m-0">
           <div class="p-1 m-0">
             <div class="d-flex align-items-center justify-content-between">
-              <h5 class="m-0">{{title}}:</h5>
+              <h5 class="m-0" v-if="title">{{title}}:</h5>
               <span v-if="tag" class="tag" :style="{'background-color': color || 'purple'}">
-                <i v-if="tag == 'icon'" class="fa fa-lg fa-fw" :class="icon" :style="{'color': tagColor}"></i>
+                <i
+                  v-if="tag == 'icon'"
+                  class="fa fa-lg fa-fw"
+                  :class="icon"
+                  :style="{'color': tagColor}"
+                ></i>
                 <span v-else>{{tag}}</span>
               </span>
               <div
@@ -37,7 +42,7 @@
           <span v-if="showTitle" class="ml-1" :style="{'color': color}">{{title}}</span>
         </div>
         <div v-else-if="useSlot">
-          <slot></slot>
+          <slot name="hoverable"></slot>
         </div>
         <div v-else :style="{'text-decoration-color': color}">{{title}}</div>
       </div>
@@ -50,11 +55,11 @@
 export default {
   name: "QuickView",
   props: {
-    title: { type: String, required: true },
+    title: { type: String },
     showTitle: { type: Boolean, default: false },
     color: { type: String, default: "inherit" },
     tag: String,
-    tagColor: {type: String, default: "var(--light)"},
+    tagColor: { type: String, default: "var(--light)" },
     icon: String,
     forceClick: { type: Boolean, default: false },
     useSlot: { type: Boolean, default: false }
@@ -62,7 +67,7 @@ export default {
   data() {
     return {
       active: false,
-      position: { top: "-5em", right: "0" },
+      position: { top: "-5em", left: "2em" },
       hovering: false
     };
   },
@@ -109,13 +114,6 @@ export default {
   position: relative;
   cursor: pointer;
   display: inline-block;
-}
-
-.quick-view .hover-text {
-  /* font-weight: 600;
-  font-style: italic; */
-  /* text-decoration: underline var(--primary);
-  text-decoration-style: double; */
 }
 
 .quick-view.active .hover-text {

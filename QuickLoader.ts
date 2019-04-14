@@ -5,6 +5,10 @@ import QuickNotification from './Notifications/Notification.vue'
 import NotificationStore from "./Notifications/NotificationStore";
 import Avatar from "./Avatar.vue"
 import Navbar from "./Navbar.vue"
+import Autocomplete from "./Autocomplete.vue"
+
+import './ExtensionMethods'
+
 
 class QuickLoader {
   install(Vue, options) {
@@ -15,6 +19,7 @@ class QuickLoader {
     Vue.component('quick-modal', QuickModal)
     Vue.component('quick-collapse', QuickCollapse)
     Vue.component('quick-view', QuickView)
+    Vue.component('autocomplete', Autocomplete)
     Vue.component('avatar', Avatar)
     Vue.component('navbar', Navbar)
   }

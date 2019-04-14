@@ -45,8 +45,10 @@ export default {
       handler(val) {
         if (val < this.count) {
           this.open = false;
+          document.body.classList.remove('no-scroll')
         } else {
           this.open = true;
+          document.body.classList.add('no-scroll')
         }
         this.count = val;
         this.$emit("modalstate", this.open);
@@ -57,12 +59,18 @@ export default {
     toggleModal() {
       this.open = !this.open;
       this.$emit("modalstate", this.open);
+      if(this.open){
+        document.body.classList.add('no-scroll')
+      }else{
+        document.body.classList.remove('no-scroll')
+      }
     }
   },
   mounted() {
     document.addEventListener("keyup", e => {
       if (e.which == "27") {
         this.open = false;
+        document.body.classList.remove('no-scroll')
         this.$emit("modalstate", this.open);
       }
     });
