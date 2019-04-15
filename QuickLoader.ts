@@ -9,7 +9,6 @@ import Autocomplete from "./Autocomplete.vue"
 
 import './ExtensionMethods'
 
-
 class QuickLoader {
   install(Vue, options) {
     if (options.store) {

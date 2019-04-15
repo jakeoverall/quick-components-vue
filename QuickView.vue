@@ -67,7 +67,7 @@ export default {
   data() {
     return {
       active: false,
-      position: { top: "-5em", left: "2em" },
+      position: { top: "2em", left: "2em", bottom: "0", right: "0" },
       hovering: false
     };
   },
@@ -81,10 +81,10 @@ export default {
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       return {
         top: rect.top + scrollTop,
-        left: rect.left + scrollLeft
+        left: rect.left + scrollLeft,
+        bottom: rect.bottom
       };
     },
-
     setHoverPosition() {
       let pos = this.getElementPos();
       if (pos.top < 200) {
@@ -99,6 +99,10 @@ export default {
       }
       if (pos.left > 500) {
         this.position.left = "-50vw";
+      }
+      if (pos.bottom > document.body.scrollHeight - 500) {
+        this.position.top = "";
+        this.position.bottom = "5em";
       }
     },
     onHover(type) {
