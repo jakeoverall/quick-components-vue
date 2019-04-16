@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="avatar d-flex flex-column text-white justify-content-end" :style="avatarStyle(false)">
+    <div class="avatar text-white" :style="avatarStyle(false)">
       <div
         v-if="canChange"
         @click="toggle +=1"
@@ -53,7 +53,7 @@ export default {
   name: "avatar",
   props: {
     user: { type: Object, required: true },
-    size: { type: String, default: "70px" },
+    size: { type: String, default: "100%" },
     borderStyle: { type: String, default: "" },
     radius: { type: String, default: "" }
   },
@@ -112,8 +112,8 @@ export default {
         "background-image": img,
         "border-radius": this.radius,
         border: this.borderStyle,
-        height: this.size,
-        width: this.size
+        "height": this.size,
+        "max-width": this.size
       };
     }
   }
@@ -122,9 +122,10 @@ export default {
 
 <style>
 .avatar {
-  height: 70px;
-  width: 70px;
+  min-height: 35px;
+  min-width: 35px;
   background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
   font-size: medium;
 }
