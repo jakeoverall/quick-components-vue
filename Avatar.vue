@@ -12,25 +12,34 @@
       </div>
     </div>
     <quick-modal :toggle="toggle">
-      <form class="m-3" @submit.prevent="changeAvatar()">
+      <form class="p-3" @submit.prevent="changeAvatar()">
         <div class="d-flex align-items-center justify-content-between">
           <div class="card">
             <div class="d-flex align-items-center justify-content-between p-5 m-3">
-              <div>
-                <img :src="user.avatar || defaultAvatar" width="70" class="mr-3">
-              </div>
               <div class="d-flex align-items-center">
-                <i class="fa fa-fw fa-arrow-circle-right fa-lg mr-3 text-primary"></i>
-
-                <input
-                  v-if="!preview"
-                  class="upload"
-                  name="avatar"
-                  type="file"
-                  accept="image/*"
-                  @change.capture="readFile"
+                <label
+                  for="user-avatar"
+                  class="m-0 p-0 d-flex align-items-center justify-content-around"
                 >
-                <img v-else :src="preview" width="70" @click="preview = ''">
+                  <div class="bg-checkered" style="height: 125px; width:125px">
+                    <div
+                      v-if="user.avatar"
+                      style="height: 125px; width:125px; background-size:cover; background-position: center center"
+                      :style="{ 'background-image': `url(${preview ? preview : user.avatar})` }"
+                    ></div>
+                  </div>
+                  <div class="p-2 bg-secondary text-light action muted text-center">
+                    <i class="fa fa-fw fa-lg fa-picture-o"></i>
+                    <h3>Add Image</h3>
+                    <small>Recommended Avatar Size 250x250</small>
+                  </div>
+                  <input
+                    id="user-avatar"
+                    type="file"
+                    @change.capture="readFile"
+                    accept="image/*"
+                  >
+                </label>
               </div>
             </div>
             <div v-if="preview">
@@ -112,7 +121,7 @@ export default {
         "background-image": img,
         "border-radius": this.radius,
         border: this.borderStyle,
-        "height": this.size,
+        height: this.size,
         "max-width": this.size
       };
     }
@@ -141,4 +150,15 @@ export default {
   opacity: 0.8;
   cursor: pointer;
 }
+
+.bg-checkered {
+  background-image: linear-gradient(45deg, #808080 25%, transparent 25%),
+    linear-gradient(-45deg, #808080 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #808080 75%),
+    linear-gradient(-45deg, transparent 75%, #808080 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  outline: 1px dashed #808080;
+}
+
 </style>
