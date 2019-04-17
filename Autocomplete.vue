@@ -42,7 +42,12 @@ export default {
       default: false
     },
     inputClass: String,
-    placeholder: String
+    placeholder: String,
+    canOpen: {
+      type: Boolean,
+      required: false,
+      default: true
+    }
   },
 
   data() {
@@ -57,7 +62,7 @@ export default {
 
   methods: {
     onChange() {
-      this.$emit("input", this.search || "");
+      this.$emit("input", this.search.toLowerCase() || "");
       if (this.async) {
         this.isLoading = true;
       } else {
@@ -91,6 +96,7 @@ export default {
       this.setResult(this.results[this.index]);
     },
     open() {
+      if(!this.canOpen) return
       this.isOpen = true;
       document.body.classList.add("no-scroll");
     },
@@ -114,6 +120,7 @@ export default {
     items: function(val, oldValue) {
       this.results = val;
       this.isLoading = false;
+      val.length ? this.open() : this.close()
     }
   },
   mounted() {
