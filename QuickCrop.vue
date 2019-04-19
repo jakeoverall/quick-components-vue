@@ -40,7 +40,11 @@
           title="Flip Horizontal"
           @click="cropper.flipX()"
         ></i>
-        <i class="fa fa-fw fa-arrows-v action muted d-none d-md-block" title="Flip Vertical" @click="cropper.flipY()"></i>
+        <i
+          class="fa fa-fw fa-arrows-v action muted d-none d-md-block"
+          title="Flip Vertical"
+          @click="cropper.flipY()"
+        ></i>
         <i class="fa fa-fw fa-floppy-o action muted" title="Save Image" @click="save()"></i>
         <i
           class="fa fa-fw fa-cloud-download action muted"
@@ -53,7 +57,11 @@
           @click="cropper.remove(); cropper.refresh()"
         ></i>
       </div>
-      <div :style="{width: width + 'px'}" class="p-1 bg-dark text-light text-center" v-if="error || recommendation">
+      <div
+        :style="{width: width + 'px'}"
+        class="p-1 bg-dark text-light text-center"
+        v-if="error || recommendation"
+      >
         <small>{{error}}</small>
         <small v-if="!error">{{recommendation}}</small>
       </div>
@@ -68,7 +76,7 @@ export default {
     height: { type: Number, required: true },
     width: { type: Number, required: true },
     showToolbar: { type: Boolean, default: true },
-    initialImage: {type: String, default: ""},
+    initialImage: { type: String, default: "" },
     autoSave: { type: Boolean, default: false },
     recommendation: String,
     error: String
@@ -76,15 +84,29 @@ export default {
   data() {
     return {
       cropper: {},
-      file: {}
+      file: {},
+      delay: 0
     };
+  },
+  mounted() {
+    if (this.autoSave) {
+      this.cropper.$on("new-image-drawn", this.save);
+      this.cropper.$on("move", this.save);
+      this.cropper.$on("zoom", this.save);
+    }
   },
   methods: {
     save() {
-      if(!this.file.name){
-        this.file.name = "capture"
+      if (this.delay) {
+        clearTimeout(this.delay);
       }
-      this.$emit("save", { cropper: this.cropper, file: this.file });
+      this.delay = setTimeout(() => {
+        this.delay = null;
+        if (!this.file.name) {
+          this.file.name = "capture";
+        }
+        this.$emit("save", { cropper: this.cropper, file: this.file });
+      }, 250);
     },
     async downloadImage() {
       let e = event;
@@ -101,8 +123,8 @@ export default {
     },
     fileChanged(file) {
       this.file = file;
-      if(this.autoSave){
-        this.save()
+      if (this.autoSave) {
+        this.save();
       }
     }
   }
