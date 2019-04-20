@@ -5,6 +5,7 @@ import QuickNotification from './Notifications/Notification.vue'
 import NotificationStore from "./Notifications/NotificationStore";
 import Avatar from "./Avatar.vue"
 import Navbar from "./Navbar.vue"
+import Sidebar from "./Sidebar.vue"
 import Autocomplete from "./Autocomplete.vue"
 
 import './ExtensionMethods'
@@ -25,6 +26,7 @@ class QuickLoader {
     Vue.component('autocomplete', Autocomplete)
     Vue.component('avatar', Avatar)
     Vue.component('navbar', Navbar)
+    Vue.component('sidebar', Sidebar)
   }
 }
 

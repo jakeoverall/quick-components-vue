@@ -3,29 +3,21 @@
     <!-- LEFT -->
     <a href="/">
       <div class="navbar-brand d-flex align-items-center no-select">
-        <img class="nav-logo" src="./assets/cw-nav-logo.png" height="45" width="45">
-        <div class="d-flex flex-column text-white site-title">
-          <h6 class="p-0 m-0 title">
-            <span class="ml-1">CodeWorks</span>
-          </h6>
-          <h6 class="m-0 ml-1">
-            <span>Academy</span>
-          </h6>
-        </div>
+        <img src="./assets/codeworks-academy-nav.png" alt="CodeWorks Logo">
       </div>
     </a>
 
     <!-- RIGHT -->
     <div class="d-flex align-items-center mr-3 text-light">
-      <div>
+      <!-- <div>
         <i class="fa fa-fw fa-bell action muted mr-3"></i>
-      </div>
-      <div class="mr-3">
+      </div> -->
+      <!-- <div class="mr-3">
         <quick-view class="text-dark" title="CodeWorks Academy" icon="fa-th text-white">
           <div class="card p-3">app list here???</div>
         </quick-view>
-      </div>
-      <avatar :user="user" radius="50%" border-style="1px solid var(--primary)" size="55px"/>
+      </div> -->
+      <avatar :user="user" radius="50%" border-style=".5px solid var(--primary)" size="55px"/>
       <!-- <small>
         <i class="fa fa-fw fa-chevron-down action muted"></i>
       </small>-->
