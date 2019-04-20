@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-2 shadow d-flex align-items-md-center flex-column bg-secondary text-light">
+  <div class="card p-2 shadow d-flex align-items-md-center flex-column" :class="theme">
     <div class="d-flex justify-content-between d-md-none">
       <div class="underline capitalize" v-if="showRouteName">{{$route.name.split('.').join(' ')}}</div>
       <div class @click="open = !open">
@@ -23,7 +23,8 @@ export default {
   name: "Sidebar",
   props: {
     showRouteName: { type: Boolean, default: true },
-    links: { type: Array, required: true }
+    links: { type: Array, required: true },
+    theme: { type: String, default: "bg-secondary text-light" }
   },
   data() {
     return {
@@ -62,7 +63,7 @@ export default {
   overflow: hidden;
 }
 
-.capitalize{
+.capitalize {
   text-transform: capitalize;
 }
 
