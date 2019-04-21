@@ -18,7 +18,7 @@
           :zoom-speed="12"
           :width="width"
           :height="height"
-          :initial-image="initialImage"
+          :initial-image="initial"
           :show-remove-button="false"
           :replace-drop="true"
           :show-loading="true"
@@ -85,10 +85,13 @@ export default {
     return {
       cropper: {},
       file: {},
-      delay: 0
+      delay: 0,
+      initial: ""
     };
   },
   mounted() {
+    this.initial = this.initialImage
+    this.cropper.refresh()
     if (this.autoSave) {
       this.cropper.$on("new-image-drawn", this.save);
       this.cropper.$on("move", this.save);

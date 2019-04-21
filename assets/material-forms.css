@@ -1,0 +1,122 @@
+.md-form {
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.md-form .form-control {
+  margin: 0 0 0.5rem 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 0.3rem 0 0.55rem 0;
+  background-image: none;
+  background-color: transparent;
+  height: auto;
+}
+
+.md-form .form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: 0 0;
+}
+
+.md-form .form-control:disabled, .md-form .form-control[readonly] {
+  border-bottom: 1px solid #bdbdbd;
+  background-color: transparent;
+}
+
+.md-form input, .md-form textarea.md-textarea {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  outline: 0;
+  box-shadow: none;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  box-sizing: content-box;
+  background-color: transparent;
+  padding-left: 0.5em !important;
+}
+
+.md-form input+label {
+  margin-left: 0.5em !important;
+}
+
+.md-form input:required+label, .md-form input:optional+label {
+  transform: translate(0, -5.5em);
+  font-size: 0.8em;
+  transition: all 0.15s linear;
+}
+
+.md-form input:focus:required:valid {
+  border-color: var(--success);
+  box-shadow: -0.2em 0 0 var(--success);
+}
+
+.md-form input:required:invalid {
+  color: var(--danger);
+  box-shadow: -0.2em 0 0 var(--danger);
+}
+
+.md-form input:focus:required:invalid+label {
+  color: var(--danger);
+  transform: translate(0, -5.5em);
+}
+
+.md-form input[type="checkbox"], .md-form input[type="checkbox"]+label {
+  transform: unset !important;
+  font-size: 0.8em !important;
+  box-shadow: none !important;
+}
+
+/* CUSTOM CHECKBOX */
+
+label.checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+}
+
+label.checkbox .checkmark {
+  display: inline-block;
+  margin-right: 0.5em;
+  height: 25px;
+  width: 25px;
+  background-color: var(--light);
+  border: .5px solid var(--secondary);
+  transition: all 0.25s linear;
+}
+
+label.checkbox input {
+  opacity: 0;
+  width: 0;
+}
+
+label.checkbox:hover input~.checkmark {
+  background-color: var(--primary);
+}
+
+label.checkbox input:checked~.checkmark {
+  background-color: var(--primary);
+}
+
+label.checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+label.checkbox input:checked~.checkmark:after {
+  display: block;
+}
+
+label.checkbox .checkmark:after {
+  left: 13px;
+  top: 4px;
+  width: 7px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}

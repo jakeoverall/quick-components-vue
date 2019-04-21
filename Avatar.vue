@@ -16,6 +16,7 @@
         <div class="card">
           <div class="p-3">
             <quick-crop
+              recommendation="Set your user avatar 250x250"
               :initial-image="user.avatar"
               :height="250"
               :width="250"
