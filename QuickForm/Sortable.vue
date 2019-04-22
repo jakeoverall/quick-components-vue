@@ -20,36 +20,41 @@
       <div class="content-actions d-flex justify-content-between">
         <div class="action muted" @click="collapseItem(k)">
           <i class="fa fa-fw fa-caret-down toggler" :class="{'rotate-up': !collapsed[k]}"></i>
-          <span>{{item.name}}</span>
+          <span>{{item[displayField]}}</span>
         </div>
         <i class="fa fa-fw fa-ellipsis-h action muted toggler"></i>
       </div>
       <div class="content-item" :class="{collapsed: !collapsed[k]}">
-        <slot name="item-content"></slot>
+        <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import vue from 'vue'
 export default {
   name: "Sortable",
+  inheritAttrs: false,
   props: {
     arr: { type: Array, required: true },
     zone: { type: String, default: "unnamed" },
     displayField: { type: String, default: "name" },
     reverse: { type: Boolean, default: false },
-    enableDrag: { type: Boolean, default: true }
+    enableDrag: { type: Boolean, default: true },
+    collapseZone: Boolean,
   },
   data() {
     return {
-      collapseZone: false,
       collapsed: {},
       dragging: -1,
       next: -1
     };
   },
   methods: {
+    collapseItem(i) {
+      vue.set(this.collapsed, i, !this.collapsed[i]);
+    },
     dragStart(item, i, arr) {
       event.target.classList.add("active");
       this.dragging = i;
