@@ -25,14 +25,14 @@
         <i class="fa fa-fw fa-ellipsis-h action muted toggler"></i>
       </div>
       <div class="content-item" :class="{collapsed: !collapsed[k]}">
-        <slot></slot>
+        <slot name="item" :item="item" :index="k">{{k}} - {{item}}</slot>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import vue from 'vue'
+import vue from "vue";
 export default {
   name: "Sortable",
   inheritAttrs: false,
@@ -42,11 +42,12 @@ export default {
     displayField: { type: String, default: "name" },
     reverse: { type: Boolean, default: false },
     enableDrag: { type: Boolean, default: true },
-    collapseZone: Boolean,
+    collapseZone: Boolean
   },
   data() {
     return {
       collapsed: {},
+      moving: {},
       dragging: -1,
       next: -1
     };
@@ -57,17 +58,23 @@ export default {
     },
     dragStart(item, i, arr) {
       event.target.classList.add("active");
+      this.moving = item;
       this.dragging = i;
     },
     dragOver(item, i, arr) {
       if (i == this.dragging) {
         return;
       }
-      event.currentTarget.setAttribute("data-moving", item.name);
+      event.currentTarget.setAttribute(
+        "data-moving",
+        this.moving[this.displayField]
+      );
       this.next = i;
     },
     dragEnd() {
       event.target.classList.remove("active");
+      this.dragging = -1;
+      this.next = -1;
     },
     dragDrop() {
       if (this.dragging == -1 || this.next == -1) {

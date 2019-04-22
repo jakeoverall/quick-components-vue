@@ -16,19 +16,23 @@
       ></i>
     </legend>
 
+
+
+
     <sortable :arr="model[prop.name]" :collapse-zone="prop.collapsed">
-      <div v-for="item in model[prop.name]" :key="item.name" class="content-item">
+      <div slot="item" slot-scope="slotProps" class="content-item">
         <input-type
           v-for="(p, i) in prop.props"
           :key="`${p.name}-prop-${i}`"
           :prop="p"
-          :model="item"
+          :model="slotProps.item"
           :errors="errors"
           @validate="validateProp(p, model[prop.name])"
         />
         <button class="btn btn-danger btn-block mt-1" @click="model[prop.name].splice(k,1)">Remove</button>
       </div>
     </sortable>
+
   </fieldset>
 </template>
 
