@@ -25,9 +25,10 @@
         <i class="fa fa-fw fa-ellipsis-h action muted toggler"></i>
       </div>
       <div class="content-item" :class="{collapsed: !collapsed[k]}">
-        <slot name="item" :item="item" :index="k">{{k}} - {{item}}</slot>
+        <slot name="item" :item="item" :index="k" :arr="arr">{{k}} - {{item}}</slot>
       </div>
     </div>
+    <div class="form-group p-2 m-2 border draggable" @dragover="dragOver({}, arr.length, arr)"></div>
   </div>
 </template>
 
