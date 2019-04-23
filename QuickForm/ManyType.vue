@@ -16,10 +16,7 @@
       ></i>
     </legend>
 
-
-
-
-    <sortable :arr="model[prop.name]" :collapse-zone="prop.collapsed">
+    <sortable :arr="model[prop.name]" :collapse-zone="prop.collapsed" :zone="prop.zone || prop.name">
       <div slot="item" slot-scope="slotProps" class="content-item">
         <input-type
           v-for="(p, i) in prop.props"
