@@ -22,16 +22,16 @@
         <many-type
           v-if="prop.fieldType == 'many'"
           :prop="prop"
-          :model="model"
+          :model="model[prop.name]"
           :errors="errors"
-          @validate="validateProp(prop)"
+          @validate="validateProp(prop, model[prop.name])"
         />
         <input-type
           v-else
           :prop="prop"
           :model="model"
           :errors="errors"
-          @validate="validateProp(prop)"
+          @validate="validateProp(prop, model[prop.name])"
         />
       </div>
     </tab-content>

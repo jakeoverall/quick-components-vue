@@ -10,12 +10,12 @@
         class="mr-1"
       >
       <span class="checkmark"></span>
-      <span>{{prop.text}}</span>
+      <span>{{prop.text ? prop.text : prop.name}}</span>
       <small class="muted ml-3 text-info">{{prop.helper}}</small>
     </label>
 
     <label v-else :for="prop.name">
-      <span>{{prop.text}}</span>
+      <span>{{prop.text ? prop.text : prop.name}}</span>
       <small class="muted ml-3 text-info">{{prop.helper}}</small>
     </label>
 
@@ -61,6 +61,22 @@
         </div>
       </div>
 
+      <div v-if="prop.fieldType == 'date'">
+        <span v-if="model[prop.name]">{{model[prop.name].toDateString() }}</span>
+        <input
+          type="date"
+          :value="formatDate(model[prop.name])"
+          @input="model[prop.name] = new Date($event.target.value).getTime()"
+        >
+      </div>
+
+      <div
+        v-if="prop.fieldType == 'html'"
+        v-html="model[prop.name] || 'Write Something'"
+        contenteditable="true"
+        @blur.capture="editProp(model, prop.name)"
+      ></div>
+
       <!-- SELECT -->
       <select v-model="model[prop.name]" v-if="prop.fieldType == 'select'" class="form-control">
         <option v-if="!prop.selectOptions" selected disabled>[INVALID SETUP NO OPTIONS SENT]</option>
@@ -90,9 +106,12 @@ export default {
     model: { type: Object, required: true },
     errors: { type: Object, required: true }
   },
-  methods:{
-    validateProp(p){
-      this.$emit('validate', p)
+  methods: {
+    validateProp(p) {
+      this.$emit("validate", p);
+    },
+    editProp(model, propName) {
+      model[propName] = event.target.innerHTML;
     }
   }
 };
