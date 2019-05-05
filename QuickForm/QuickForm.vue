@@ -196,6 +196,10 @@ export default {
   display: none;
 }
 
+.vue-form-wizard.disable-nav .wizard-tab-content{
+  padding: 0;
+}
+
 .no-select {
   user-select: none;
 }

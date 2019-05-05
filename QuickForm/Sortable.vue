@@ -36,8 +36,8 @@
           v-if="enableDrag"
           class="fa fa-fw action muted toggler drag-handle"
           :class="k == i ? 'fa-arrows' :'fa-bars'"
-          @mousedown="i = k"
-          @touch="i = k"
+          @mousedown="i = k == i ? -1 : k"
+          @touch="i = k == i ? -1 : k"
         ></i>
       </div>
       <div class="content-item" :class="{collapsed: !collapsed[k]}">
