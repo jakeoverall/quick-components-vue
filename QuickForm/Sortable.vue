@@ -40,6 +40,15 @@
           @touch="i = k == i ? -1 : k"
         ></i>
       </div>
+      <div
+        class="d-flex align-items-center bg-dark text-light"
+        style="position: absolute; left: -20px; top: -18px"
+        @click="insertItem(k)"
+      >
+        <small class="on-hover no-select d-flex align-items-center arrow-box">
+          <small class="pl-1 pr-1">INSERT</small>
+        </small>
+      </div>
       <div class="content-item" :class="{collapsed: !collapsed[k]}">
         <slot name="item" :item="item" :index="k" :arr="arr">{{k}} - {{item}}</slot>
       </div>
@@ -103,8 +112,11 @@ export default {
     addItem() {
       this.arr.push(this.schema());
     },
+    insertItem(i){
+      this.arr.splice(i, 0, this.schema());
+    },
     dragStart(item, i, arr) {
-      event.currentTarget.classList.add('moving')
+      event.currentTarget.classList.add("moving");
       let elem = document.createElement("div");
       elem.className =
         "form-group p-2 m-2 border draggable bg-secondary text-light action muted";
@@ -145,7 +157,7 @@ export default {
     dragEnd() {
       try {
         document.body.removeChild(this.elem);
-        event.currentTarget.classList.remove('moving')
+        event.currentTarget.classList.remove("moving");
         this.resetDragging();
       } catch (e) {}
     },
@@ -229,7 +241,7 @@ export default {
   border: 1px dotted !important;
   background: var(--secondary);
   color: var(--light);
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .dropzone-container.over > .draggable.over {
@@ -237,8 +249,25 @@ export default {
   border: 1px dotted !important;
 }
 
-.draggable[draggable="true"]{
-  background-color: var(--primary);
+.draggable[draggable="true"] {
+  background-color: var(--dark);
   color: var(--light);
+}
+
+.arrow-box {
+	position: relative;
+	background: var(--dark);
+}
+.arrow-box:after {
+	left: 100%;
+	top: 50.2%;
+	border: solid;
+	content: " ";
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: var(--dark);
+	border-width: 10px;
+	margin-top: -10px;
 }
 </style>
