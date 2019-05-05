@@ -93,7 +93,7 @@ export default {
     this.initial = this.initialImage
     this.cropper.refresh()
     if (this.autoSave) {
-      this.cropper.$on("new-image-drawn", this.save);
+      // this.cropper.$on("new-image-drawn", this.save);
       this.cropper.$on("move", this.save);
       this.cropper.$on("zoom", this.save);
     }
