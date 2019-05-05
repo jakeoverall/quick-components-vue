@@ -121,8 +121,7 @@ export default {
 }
 
 .quick-view.active .hover-text {
-  border-radius: 5px;
-  padding: 3px;
+  outline: 3px solid var(--dark);
   background-color: var(--dark);
   color: var(--light);
 }
