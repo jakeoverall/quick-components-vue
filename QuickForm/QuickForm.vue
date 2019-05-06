@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       currentStep: 0,
-      errors: {},
+      errors: {}
     };
   },
   computed: {
@@ -161,11 +161,11 @@ export default {
                   this,
                   this.model
                 );
-                this.validateProp(prop, this.model);
                 resolve();
               })
             );
           }
+          this.validateProp(prop, this.model);
         });
         await Promise.all(promises);
       } catch (e) {
@@ -196,7 +196,7 @@ export default {
   display: none;
 }
 
-.vue-form-wizard.disable-nav .wizard-tab-content{
+.vue-form-wizard.disable-nav .wizard-tab-content {
   padding: 0;
 }
 
