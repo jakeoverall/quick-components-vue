@@ -45,7 +45,7 @@
       <!-- IMAGE UPLOADER -->
       <div
         v-if="prop.fieldType == 'img'"
-        class="bg-secondary p-1 flex-grow-1 d-flex align-items-center flex-wrap justify-content-around"
+        class="border p-1 flex-grow-1 d-flex align-items-center flex-wrap justify-content-around"
       >
         <quick-crop
           :height="prop.height"
@@ -54,7 +54,7 @@
           :auto-save="true"
           @save="prop.onFile(...arguments, model)"
         />
-        <div class="p-2 b text-light action muted text-center">
+        <div class="p-2 b action muted text-center">
           <i class="fa fa-fw fa-md fa-picture-o"></i>
           <h5>Add Image</h5>
           <small>{{prop.fileSpecs}}</small>
