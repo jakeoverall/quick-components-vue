@@ -1,13 +1,12 @@
 <template>
   <div class="quick-modal-slot">
     <transition name="fade">
-    <div class="quick-modal quick-modal-container" :class="{open: open}" v-if="open">
-      <div>
+      <div class="quick-modal quick-modal-container" :class="{open: open}" v-if="open">
         <div class="quick-modal-overlay" :class="{open: open}" @click="toggleModal"></div>
         <div
           class="quick-modal-card card square p-1 d-flex"
           :class="{open: open}"
-          :style="{'min-width': width+'%'}"
+          :style="{'min-width': width+'%','min-height': height+'%'}"
         >
           <div>
             <slot></slot>
@@ -17,7 +16,6 @@
           </div>
         </div>
       </div>
-    </div>
     </transition>
   </div>
 </template>
@@ -35,6 +33,10 @@ export default {
     width: {
       type: Number,
       default: 80
+    },
+    height: {
+      type: Number,
+      default: 50
     }
   },
   data() {
@@ -45,10 +47,10 @@ export default {
       handler(val) {
         if (val < this.count) {
           this.open = false;
-          document.body.classList.remove('no-scroll')
+          document.body.classList.remove("no-scroll");
         } else {
           this.open = true;
-          document.body.classList.add('no-scroll')
+          document.body.classList.add("no-scroll");
         }
         this.count = val;
         this.$emit("modalstate", this.open);
@@ -59,10 +61,10 @@ export default {
     toggleModal() {
       this.open = !this.open;
       this.$emit("modalstate", this.open);
-      if(this.open){
-        document.body.classList.add('no-scroll')
-      }else{
-        document.body.classList.remove('no-scroll')
+      if (this.open) {
+        document.body.classList.add("no-scroll");
+      } else {
+        document.body.classList.remove("no-scroll");
       }
     }
   },
@@ -70,7 +72,7 @@ export default {
     document.addEventListener("keyup", e => {
       if (e.which == "27") {
         this.open = false;
-        document.body.classList.remove('no-scroll')
+        document.body.classList.remove("no-scroll");
         this.$emit("modalstate", this.open);
       }
     });
@@ -132,39 +134,6 @@ export default {
 .quick-modal-overlay.open {
   z-index: 88;
   opacity: 0.45;
-}
-.quick-modal.fill-height .modal-content {
-  height: 70vh;
-  position: relative;
-}
-.quick-modal.max-fill .modal-content {
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 55px;
-  position: fixed;
-  padding: 0;
-}
-.modal-lg .modal.open {
-  width: 85% !important;
-}
-.modal-md .modal.open {
-  width: 70% !important;
-}
-.quick-modal.modal-sm .modal.open {
-  width: 55% !important;
-}
-.modal-xl .modal.open {
-  width: 95% !important;
-}
-.modal-full .modal.open {
-  width: 100% !important;
-  top: 0;
-  bottom: 0;
-  max-height: 100%;
-  overflow: hidden !important;
-  background: transparent;
 }
 .quick-modal.p-0 > .modal-content {
   padding: 0 !important;
